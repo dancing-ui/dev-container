@@ -6,8 +6,8 @@ RUN sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list \
     && sed -i 's/security.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list
 # install additional packages.
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends build-essential cmake clang gdb git vim zsh curl ca-certificates net-tools iputils-ping \
-    && apt-get install gcc-multilib
+    && apt-get -y install --no-install-recommends build-essential cmake clang clangd gdb git vim zsh curl ca-certificates net-tools iputils-ping \
+    && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*b
 # configure zsh
 RUN chsh -s /bin/zsh \ 
     && sh -c "$(curl -fsSL https://install.ohmyz.sh/)" \
